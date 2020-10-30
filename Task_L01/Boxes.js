@@ -1,10 +1,11 @@
+"use strict";
 var Boxes;
 (function (Boxes) {
-    var n = 5;
-    var color;
-    var x = 0;
-    var y = 0;
-    for (var i = 0; i < n; i++) {
+    let n = 5;
+    let color;
+    let x = 0;
+    let y = 0;
+    for (let i = 0; i < n; i++) {
         y += (i == 2) ? 20 : 50;
         x = (x + 170) % 400;
         switch (i) {
@@ -20,15 +21,14 @@ var Boxes;
             default:
                 color = "#0000ff";
         }
-        for (var _i = 0, _a = ["big", "medium", "small"]; _i < _a.length; _i++) {
-            var size = _a[_i];
+        for (let size of ["big", "medium", "small"]) {
             createBox(color, x, y, size);
             if (i == 4)
                 break;
         }
     }
     function createBox(_color, _x, _y, _size) {
-        var div = document.createElement("div");
+        let div = document.createElement("div");
         document.body.appendChild(div);
         div.classList.add(_size);
         div.style.backgroundColor = _color;

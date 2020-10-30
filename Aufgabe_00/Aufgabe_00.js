@@ -1,3 +1,4 @@
+"use strict";
 window.addEventListener("load", myFunction);
 function myFunction() {
     var popup = prompt("Sag mir bitte deinen Namen");
