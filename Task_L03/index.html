@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task L03</title>
+    <link rel="stylesheet" href="witchCaldron.css">
+    <script src="witchCaldron.js"></script>
+</head>
+<body>
+   <header>
+       <h1>Witches' caldron: Form</h1>
+       <p>Create your own potion below</p>
+   </header>
+   
+   <form>
+       <div id="form">
+            <h2>Choose here</h2>
+            <fieldset>
+                <legend>Name</legend>
+                <input type="text" name="Name" placeholder="Type here"><br>
+            </fieldset>
+
+            <fieldset>
+                <legend>Description, risks and side effects</legend>
+                <textarea name="Area" id="description" rows="3" placeholder="Type here"></textarea><br>
+            </fieldset>
+
+            <fieldset>
+                <legend>Effect and Duration</legend>
+                <select name="Effect" id="effect">
+                    <option value="None">None</option>
+                    <option value="Love potion">Love potion</option>
+                    <option value="Forgetfulness potion">Forgetfulness potion</option>
+                    <option value="Polyjuice potion">Polyjuice potion</option>
+                    <option value="Mandrake Restorative Draught">Mandrake Restorative Draught</option>
+                    <option value="Draught of Living Death">Draught of Living Death</option>
+                </select>
+                <input type="number" name="duration" id="duration" min="0" max="100" step="0.1" value="0.1">
+                <label for="duration">h</label>
+            </fieldset>
+
+            <fieldset>
+                <legend>Ingredients</legend>
+                <ul>
+                    <li>
+                        <input type="checkbox" name="Ingredients" id="wormwood" value="Infusion of Wormwood">
+                        <label for="wormwood">Infusion of Wormwood</label>
+                        <input type="number" name="wormwood amount" id="amountWormwood" min="1" max="100" step="1" value="1">
+                        <label for="amountWormwood">Stück</label><br>
+                    </li>
+
+                    <li>
+                        <input type="checkbox" name="Ingredients" id="slothBrain" value="Sloth Brain">
+                        <label for="slothBrain">Sloth Brain</label>
+                        <input type="number" name="brain amount" id="amountBrain" min="1" max="100" step="1" value="1">
+                        <label for="amountBrain">Stück</label><br>
+                    </li>
+
+                    <li>
+                        <input type="checkbox" name="Ingredients" id="rosePetals" value="Rose Petals">
+                        <label for="rosePetals">Rose Petals</label>
+                        <input type="number" name="rose amount" id="amountRose" min="1" max="100" step="1" value="1">
+                        <label for="amountRose">Stück</label><br>
+                    </li>
+
+                    <li>
+                        <input type="checkbox" name="Ingredients" id="moonstone" value="Moonstone">
+                        <label for="moonstone">Moonstone</label>
+                        <input type="number" name="moonstone amount" id="amountMoonstone" min="1" max="100" step="1" value="1">
+                        <label for="amountMoonstone">Stück</label><br>
+                    </li>
+
+                    <li>
+                        <input type="checkbox" name="Ingredients" id="knotgrass" value="Knotgrass">
+                        <label for="knotgrass">Knotgrass</label>
+                        <input type="number" name="knotgrass amount" id="amountKnotgrass" min="1" max="100" step="1" value="1">
+                        <label for="amountKnotgrass">Stück</label><br>
+                    </li>
+
+                    <li>
+                        <input type="checkbox" name="Ingredients" id="skin" value="Boomslang skin">
+                        <label for="skin">Boomslang skin</label>
+                        <input type="number" name="skin amount" id="amountSkin" min="1" max="100" step="1" value="1">
+                        <label for="amountSkin">Stück</label><br>
+                    </li>
+
+                    <li>
+                        <input type="checkbox" name="Ingredients" id="horn" value="Bicorn horn">
+                        <label for="horn">Bicorn horn</label>
+                        <input type="number" name="horn amount" id="amountHorn" min="1" max="100" step="1" value="1">
+                        <label for="amountHorn">Stück</label><br>
+                    </li>
+
+                    <li>
+                        <input type="checkbox" name="Ingredients" id="asphodel" value="Powdered root of asphodel">
+                        <label for="asphodel">Powdered root of asphodel</label>
+                        <input type="number" name="asphodel amount" id="amountAsphodel" min="1" max="100" step="1" value="1">
+                        <label for="amountAsphodel">Stück</label><br>
+                    </li>   
+
+                </ul>
+            </fieldset>
+
+            <fieldset>
+                <legend>Temperature</legend>
+                <input type="radio" name="Temperature" id="heat" value="Heat">
+                <label for="heat">Heat</label><br>
+                <input type="radio" name="Temperature" id="cool" value="Cool">
+                <label for="cool">Cool down</label><br>
+                <label for="Temperature">to</label>
+                <input type="number" name="Degree" id="degree" min="-1000" max="1000" step="1" value="1">
+                <label for="Degree">C°</label><br>
+                <p>until color is...</p>
+                <input type="color" name ="Color" id="color" placeholder="black" value="#000000">
+            </fieldset>
+
+            <fieldset>
+                <legend>Stirring</legend>
+                <span id="slider">
+                    <span>
+                        0 U/min
+                        <input type="range" name="Stir" id="stir" min="0" max="450" value="1">
+                        450 U/min
+                    </span>
+                </span><br>
+                <label for="time">for</label>
+                <input type="number" name="Time" id="time" min="1" max="100" step="1">
+                <label for="time">min</label><br>
+                <p>until consistency is...</p>
+                <input type="radio" name="Consistency" id="chewy" value="Chewy">
+                <label for="chewy">Chewy</label><br>
+                <input type="radio" name="Consistency" id="slimy" value="Slimy">
+                <label for="slimy">Slimy</label><br>
+                <input type="radio" name="Consistency" id="liquid" value="Liquid">
+                <label for="liquid">Liquid</label><br>
+            </fieldset>
+       </div> 
+   </form>
+
+   <div>
+       <h2>Your recipe</h2>
+       <div id="recipe">
+            ...
+       </div>
+   </div>
+
+</body>
+</html>
