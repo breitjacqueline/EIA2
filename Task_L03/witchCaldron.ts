@@ -5,10 +5,77 @@ namespace L03_witchCaldron {
         console.log("Start");
         let form: HTMLDivElement = <HTMLDivElement>document.querySelector("div#form");
         form.addEventListener("change", handleChange);
+
+        // let buttonText: HTMLInputElement = <HTMLInputElement>document.querySelector("input#addText");
+        // buttonText.addEventListener("click", handleButton);
+
+        let buttonTemperature: HTMLInputElement = <HTMLInputElement>document.querySelector("input#addTemperature");
+        buttonTemperature.addEventListener("click", handleTemperature);
+        
+        let buttonStir: HTMLInputElement = <HTMLInputElement>document.querySelector("input#addStir");
+        buttonStir.addEventListener("click", handleStir);
+    }
+    
+    function handleTemperature(_event: Event): void {
+        let cool: HTMLFormElement = <HTMLFormElement>document.querySelector("#cool");
+        let heat: HTMLFormElement = <HTMLFormElement>document.querySelector("#heat");
+
+        let recipe: HTMLDivElement = <HTMLDivElement>document.querySelector("div#recipe");
+
+        let formData: FormData = new FormData(document.forms[0]);
+
+        for (let entry of formData) {
+
+            switch (entry[0]) {
+                case "Temperature":
+                    if (entry[1] != "")
+                    recipe.innerHTML += "<br>" + "Temperature: " + entry[1] + "<br>";
+                    break;
+
+                case "Degree":
+                    if (entry[1] != "" && heat.checked || cool.checked)
+                    recipe.innerHTML += "Until C° = " + entry[1] + "<br>";
+                    break;
+
+                case "Color":
+                    if (entry[1] != "" && heat.checked || cool.checked)
+                    recipe.innerHTML += "Until Color = " + entry[1] + "<br>";
+                    break;
+            }
+        }
+    }
+
+    function handleStir(_event: Event): void {
+        let intensity: boolean = false;
+        let recipe: HTMLDivElement = <HTMLDivElement>document.querySelector("div#recipe");
+        
+        let formData: FormData = new FormData(document.forms[0]);
+        
+        for (let entry of formData) {
+            
+            switch (entry[0]) {
+                case "Stir":
+                    if (Number(entry[1]) != 0)
+                    recipe.innerHTML += "<br>" + "Stirring intensity: " + entry[1] + "<br>";
+                    intensity = true;
+                    break;
+                
+                case "Time":
+                    if (entry[1] != "" && intensity)
+                    recipe.innerHTML += "Stir for: " + entry[1] + " minutes" + "<br>";
+                    break;
+
+                case "Consistency":
+                    if (entry[1] != "" && intensity)
+                    recipe.innerHTML += "Stir until consistency is " + entry[1] + "<br>";
+                    break;
+
+            }
+        }
     }
 
     function handleChange(_event: Event): void {
-        let wormwood: HTMLFormElement = <HTMLFormElement>document.querySelector("#wormwoood");
+        let wormwood: HTMLFormElement = <HTMLFormElement>document.querySelector("#wormwood");
         let slothBrain: HTMLFormElement = <HTMLFormElement>document.querySelector("#slothBrain");
         let rosePetals: HTMLFormElement = <HTMLFormElement>document.querySelector("#rosePetals");
         let moonstone: HTMLFormElement = <HTMLFormElement>document.querySelector("#moonstone");
@@ -16,9 +83,6 @@ namespace L03_witchCaldron {
         let skin: HTMLFormElement = <HTMLFormElement>document.querySelector("#skin");
         let horn: HTMLFormElement = <HTMLFormElement>document.querySelector("#horn");
         let asphodel: HTMLFormElement = <HTMLFormElement>document.querySelector("#asphodel");
-        let cool: HTMLFormElement = <HTMLFormElement>document.querySelector("#cool");
-        let heat: HTMLFormElement = <HTMLFormElement>document.querySelector("#heat");
-        let intensity: boolean = false;
 
         let recipe: HTMLDivElement = <HTMLDivElement>document.querySelector("div#recipe");
         recipe.innerHTML = "";
@@ -108,37 +172,6 @@ namespace L03_witchCaldron {
                     recipe.innerHTML += "Amount: " + entry[1] + "<br>";
                     totalPrice += 2 * Number(entry[1]);
                     }
-                    break;
-
-                case "Temperature":
-                    if (entry[1] != "")
-                    recipe.innerHTML += "<br>" + "Temperature: " + entry[1] + "<br>";
-                    break;
-
-                case "Degree":
-                    if (entry[1] != "" && heat.checked || cool.checked)
-                    recipe.innerHTML += "Until C° = " + entry[1] + "<br>";
-                    break;
-
-                case "Color":
-                    if (entry[1] != "" && heat.checked || cool.checked)
-                    recipe.innerHTML += "Until Color = " + entry[1] + "<br>";
-                    break;
-
-                case "Stir":
-                    if (Number(entry[1]) != 0)
-                    recipe.innerHTML += "<br>" + "Stirring intensity:" + entry[1] + "<br>";
-                    intensity = true;
-                    break;
-                
-                case "Time":
-                    if (entry[1] != "" && intensity)
-                    recipe.innerHTML += "Stir for: " + entry[1] + "minutes" + "<br>";
-                    break;
-
-                case "Consistency":
-                    if (entry[1] != "" && intensity)
-                    recipe.innerHTML += "Stir until consistency is " + entry[1] + "<br>";
                     break;
             }
             

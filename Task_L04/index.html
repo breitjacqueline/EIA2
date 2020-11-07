@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task L03</title>
     <link rel="stylesheet" href="witchCaldron.css">
+    <script src="Interface.js"></script>
+    <script src="Data.js"></script>
+    <script src="GenerateContent.js"></script>
     <script src="witchCaldron.js"></script>
 </head>
 <body>
@@ -18,7 +21,7 @@
             <h2>Choose here</h2>
             <fieldset>
                 <legend>Name</legend>
-                <input type="text" name="Name" placeholder="Type here"><br>
+                <input type="text" name="Name" id="name"placeholder="Type here"><br>
             </fieldset>
 
             <fieldset>
@@ -41,54 +44,15 @@
                 <label for="duration">h</label>
             </fieldset>
 
-            <fieldset>
+            <fieldset id="Ingredients">
                 <legend>Ingredients</legend>
-                    <input type="checkbox" name="Ingredients" id="wormwood" value="Infusion of Wormwood">
-                    <label for="wormwood">Infusion of Wormwood</label>
-                    <input type="number" name="wormwood amount" id="amountWormwood" min="1" max="100" step="1" value="1">
-                    <label for="amountWormwood">Stück</label><br>
-                    
-                    <input type="checkbox" name="Ingredients" id="slothBrain" value="Sloth Brain">
-                    <label for="slothBrain">Sloth Brain</label>
-                    <input type="number" name="brain amount" id="amountBrain" min="1" max="100" step="1" value="1">
-                    <label for="amountBrain">Stück</label><br>
-                    
-                    <input type="checkbox" name="Ingredients" id="rosePetals" value="Rose Petals">
-                    <label for="rosePetals">Rose Petals</label>
-                    <input type="number" name="rose amount" id="amountRose" min="1" max="100" step="1" value="1">
-                    <label for="amountRose">Stück</label><br>
-                    
-                    <input type="checkbox" name="Ingredients" id="moonstone" value="Moonstone">
-                    <label for="moonstone">Moonstone</label>
-                    <input type="number" name="moonstone amount" id="amountMoonstone" min="1" max="100" step="1" value="1">
-                    <label for="amountMoonstone">Stück</label><br>
-                    
-                    <input type="checkbox" name="Ingredients" id="knotgrass" value="Knotgrass">
-                    <label for="knotgrass">Knotgrass</label>
-                    <input type="number" name="knotgrass amount" id="amountKnotgrass" min="1" max="100" step="1" value="1">
-                    <label for="amountKnotgrass">Stück</label><br>
-                    
-                    <input type="checkbox" name="Ingredients" id="skin" value="Boomslang skin">
-                    <label for="skin">Boomslang skin</label>
-                    <input type="number" name="skin amount" id="amountSkin" min="1" max="100" step="1" value="1">
-                    <label for="amountSkin">Stück</label><br>
-    
-                    <input type="checkbox" name="Ingredients" id="horn" value="Bicorn horn">
-                    <label for="horn">Bicorn horn</label>
-                    <input type="number" name="horn amount" id="amountHorn" min="1" max="100" step="1" value="1">
-                    <label for="amountHorn">Stück</label><br>
-
-                    <input type="checkbox" name="Ingredients" id="asphodel" value="Powdered root of asphodel">
-                    <label for="asphodel">Powdered root of asphodel</label>
-                    <input type="number" name="asphodel amount" id="amountAsphodel" min="1" max="100" step="1" value="1">
-                    <label for="amountAsphodel">Stück</label>
             </fieldset>
 
             <fieldset>
                 <legend>Temperature</legend>
                 <input type="radio" name="Temperature" id="heat" value="Heat">
                 <label for="heat">Heat</label><br>
-                <input type="radio" name="Temperature" id="cool" value="Cool">
+                <input type="radio" name="Temperature" id="cool" value="Cool down">
                 <label for="cool">Cool down</label><br>
                 <label for="Temperature">to</label>
                 <input type="number" name="Degree" id="degree" min="-1000" max="1000" step="1" value="1">
@@ -111,11 +75,11 @@
                 <input type="number" name="Time" id="time" min="1" max="100" step="1">
                 <label for="time">min</label><br>
                 <p>until consistency is...</p>
-                <input type="radio" name="Consistency" id="chewy" value="Chewy">
+                <input type="radio" name="Consistency" id="chewy" value="chewy">
                 <label for="chewy">Chewy</label><br>
-                <input type="radio" name="Consistency" id="slimy" value="Slimy">
+                <input type="radio" name="Consistency" id="slimy" value="slimy">
                 <label for="slimy">Slimy</label><br>
-                <input type="radio" name="Consistency" id="liquid" value="Liquid">
+                <input type="radio" name="Consistency" id="liquid" value="liquid">
                 <label for="liquid">Liquid</label><br><br>
                 <input type="button" id="addStir" value="add instructions">
             </fieldset>
@@ -124,9 +88,11 @@
 
    <div>
        <h2>Your recipe</h2>
+       <div id="recipeContainer">
        <div id="recipe">
             ...
        </div>
+        </div>
    </div>
 
 </body>
