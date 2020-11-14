@@ -88,7 +88,7 @@ namespace L05_witchCaldron {
                 
                 let ingItem: HTMLElement = document.createElement("li");
                 let sumPrice: number = price * amount;
-                ingItem.innerHTML = name + ", amount: " + amount + ", price: " + sumPrice;
+                ingItem.innerHTML = "Add" + name + ", amount: " + amount + ", price: " + sumPrice;
                 ingList.appendChild(ingItem);
                 addToTotalPrice(sumPrice);
                 
