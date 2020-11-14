@@ -65,7 +65,7 @@ var L05_witchCaldron;
                 let price = data["Ingredients"][i].price;
                 let ingItem = document.createElement("li");
                 let sumPrice = price * amount;
-                ingItem.innerHTML = "Add" + name + ", amount: " + amount + ", price: " + sumPrice;
+                ingItem.innerHTML = "Add  " + name + ", amount: " + amount + ", price: " + sumPrice;
                 ingList.appendChild(ingItem);
                 addToTotalPrice(sumPrice);
             }

@@ -36,6 +36,7 @@ var L05_witchCaldron;
             amount.type = "number";
             amount.width = 50;
             amount.id = "ing_val_" + idCounter;
+            amount.valueAsNumber = 1;
             idCounter = idCounter + 1;
             group.appendChild(checkbox);
             group.appendChild(label);
