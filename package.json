@@ -1,23 +1,19 @@
 {
-  "name": "eia2-inverted",
+  "name": "eiazwei",
   "version": "1.0.0",
   "description": "Control for the heroku implementation",
-  "main": "",
+  "main": "Server.js",
   "scripts": {
-    "start": "node X00_Code/L06_Server/CocktailBar/Server/Server.js"
+    "start": "node Server.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JirkaDellOro/EIA2-Inverted.git"
+    "url": "git+https://github.com/breitjacqueline/EIA2.git"
   },
-  "author": "Jirka R. Dell'Oro-Friedl",
+  "author": "Jacqueline Breit",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/JirkaDellOro/EIA2-Inverted/issues"
+    "url": "https://github.com/breitjacqueline/EIA2/issues"
   },
-  "homepage": "https://github.com/JirkaDellOro/EIA2-Inverted#readme",
-  "dependencies": {
-    "@types/mongodb": "^3.3.1",
-    "mongodb": "^3.3.2"
-  }
+  "homepage": "https://github.com/breitjacqueline/EIA2#readme"
 }
