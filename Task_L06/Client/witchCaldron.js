@@ -1,9 +1,10 @@
 "use strict";
-var L05_witchCaldron;
-(function (L05_witchCaldron) {
+var L06_witchCaldron;
+(function (L06_witchCaldron) {
     window.addEventListener("load", handleLoad);
     let totalPrice = 0;
     let form;
+    let url = "http://localhost:5001";
     let response;
     let data;
     async function handleLoad(_event) {
@@ -13,7 +14,7 @@ var L05_witchCaldron;
         let offer = await response.text();
         data = JSON.parse(offer);
         //fill content
-        L05_witchCaldron.generateContent(data);
+        L06_witchCaldron.generateContent(data);
         let submit = document.querySelector("button[type=button]");
         submit.addEventListener("click", sendOrder);
         let recipeContainer = document.querySelector("div#recipeContainer");
@@ -39,8 +40,9 @@ var L05_witchCaldron;
     async function sendOrder(_event) {
         let formData = new FormData(form);
         let query = new URLSearchParams(formData);
-        response = await fetch("index.html?" + query.toString());
-        alert("Order sent!");
+        response = await fetch(url + "?" + query.toString());
+        let responseText = await response.text();
+        alert(responseText);
     }
     function addToTotalPrice(_priceToAdd) {
         totalPrice = totalPrice + _priceToAdd;
@@ -48,7 +50,7 @@ var L05_witchCaldron;
     }
     function updateTotalPrice() {
         let priceLabel = document.querySelector("p#totalPrice");
-        priceLabel.innerHTML = "Total Price: " + totalPrice + " Galleonen";
+        priceLabel.innerHTML = "Total Price: " + totalPrice;
     }
     function handleIngrediengts(_event) {
         let ingLength = data["Ingredients"].length;
@@ -140,5 +142,5 @@ var L05_witchCaldron;
             }
         }
     }
-})(L05_witchCaldron || (L05_witchCaldron = {}));
+})(L06_witchCaldron || (L06_witchCaldron = {}));
 //# sourceMappingURL=witchCaldron.js.map

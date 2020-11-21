@@ -1,7 +1,8 @@
-namespace L05_witchCaldron {
+namespace L06_witchCaldron {
     window.addEventListener("load", handleLoad);
     let totalPrice: number = 0;
     let form: HTMLFormElement;
+    let url: string = "http://localhost:5001";
 
     let response: Response;
     let data: Data;
@@ -52,8 +53,9 @@ namespace L05_witchCaldron {
     async function sendOrder(_event: Event): Promise<void> {
         let formData: FormData = new FormData(form);
         let query: URLSearchParams = new URLSearchParams(<any>formData);
-        response = await fetch("index.html?" + query.toString());
-        alert("Order sent!");
+        response = await fetch(url + "?" + query.toString());
+        let responseText: string = await response.text();
+        alert(responseText);
     }
 
     function addToTotalPrice(_priceToAdd: number): void {
@@ -64,7 +66,7 @@ namespace L05_witchCaldron {
 
     function updateTotalPrice(): void {
         let priceLabel: HTMLElement = <HTMLElement>document.querySelector("p#totalPrice");
-        priceLabel.innerHTML = "Total Price: " + totalPrice + " Galleonen";
+        priceLabel.innerHTML = "Total Price: " + totalPrice;
     }
 
     function handleIngrediengts(_event: Event): void {
