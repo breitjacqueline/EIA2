@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task L03</title>
+    <link rel="stylesheet" href="witchCaldron.css">
+    <script src="GenerateContent.js"></script>
+    <script src="witchCaldron.js"></script>
+</head>
+<body>
+   <header>
+       <h1>Witches' caldron: Form</h1>
+       <p>Create your own potion below</p>
+   </header>
+   
+   <form id="orderForm" method="GET">
+       <div>
+            <h2>Choose here</h2>
+            <fieldset>
+                <legend>Name</legend>
+                <input type="text" name="Name" id="name"placeholder="Type here"><br>
+            </fieldset>
+
+            <fieldset>
+                <legend>Description, risks and side effects</legend>
+                <textarea name="Area" id="description" rows="3" placeholder="Type here"></textarea><br><br>
+                <input type="button" id="addText" value="submit">
+            </fieldset>
+
+            <fieldset>
+                <legend>Effect and Duration</legend>
+                <select name="Effect" id="effect">
+                    <option value="None">None</option>
+                    <option value="Love potion">Love potion</option>
+                    <option value="Forgetfulness potion">Forgetfulness potion</option>
+                    <option value="Polyjuice potion">Polyjuice potion</option>
+                    <option value="Mandrake Restorative Draught">Mandrake Restorative Draught</option>
+                    <option value="Draught of Living Death">Draught of Living Death</option>
+                </select>
+                <input type="number" name="duration" id="duration" min="0" max="100" step="0.1" value="0.1">
+                <label for="duration">h</label>
+            </fieldset>
+
+            <fieldset id="Ingredients">
+                <legend>Ingredients</legend>
+            </fieldset>
+
+            <fieldset>
+                <legend>Temperature</legend>
+                <input type="radio" name="Temperature" id="heat" value="Heat">
+                <label for="heat">Heat</label><br>
+                <input type="radio" name="Temperature" id="cool" value="Cool down">
+                <label for="cool">Cool down</label><br>
+                <label for="Temperature">to</label>
+                <input type="number" name="Degree" id="degree" min="-1000" max="1000" step="1" value="1">
+                <label for="Degree">C°</label><br>
+                <p>until color is...</p>
+                <input type="color" name ="Color" id="color" placeholder="black" value="#000000"><br><br>
+                <input type="button" id="addTemperature" value="add instructions">
+            </fieldset>
+
+            <fieldset>
+                <legend>Stirring</legend>
+                <span id="slider">
+                    <span>
+                        0 U/min
+                        <input type="range" name="Stir" id="stir" min="0" max="450" value="1">
+                        450 U/min
+                    </span>
+                </span><br>
+                <label for="time">for</label>
+                <input type="number" name="Time" id="time" min="1" max="100" step="1">
+                <label for="time">min</label><br>
+                <p>until consistency is...</p>
+                <input type="radio" name="Consistency" id="chewy" value="chewy">
+                <label for="chewy">Chewy</label><br>
+                <input type="radio" name="Consistency" id="slimy" value="slimy">
+                <label for="slimy">Slimy</label><br>
+                <input type="radio" name="Consistency" id="liquid" value="liquid">
+                <label for="liquid">Liquid</label><br><br>
+                <input type="button" id="addStir" value="add instructions">
+            </fieldset>
+       </div> 
+   </form>
+
+   <div>
+       <h2>Your recipe</h2>
+       <div id="recipeContainer">
+       <div id="recipe">
+            ...
+       </div>
+        </div>
+        <button type="button" form="orderForm">Order</button>
+   </div>
+
+</body>
+</html>
