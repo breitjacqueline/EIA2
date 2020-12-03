@@ -3,14 +3,12 @@ var L07_witchCaldron;
 (function (L07_witchCaldron) {
     window.addEventListener("load", handleLoad);
     let totalPrice = 0;
-    let form;
     let url = "https://eiazwei.herokuapp.com/";
     // let url: string = "http://localhost:5001";
     let response;
     let data;
     async function handleLoad(_event) {
         console.log("Start");
-        form = document.querySelector("form#orderForm");
         response = await fetch("Data.json");
         let offer = await response.text();
         data = JSON.parse(offer);
@@ -41,23 +39,19 @@ var L07_witchCaldron;
         buttonStir.addEventListener("click", handleStir);
     }
     async function retrieveRecipes() {
-        let formData = new FormData(form);
-        let recipeContent = document.querySelector("div#recipe");
-        let recipeString = recipeContent.innerHTML;
-        formData.append("Zaubertrank-Rezept:", recipeString);
         let respone = await fetch(url + "?" + "command=retrieve");
         let responseText = await respone.text();
         alert(responseText.replace(/<br>/g, " "));
     }
     async function sendRecipe(_event) {
-        let formData = new FormData(form);
+        let formData = new FormData();
         let recipeContent = document.querySelector("div#recipe");
         let recipeString = recipeContent.innerHTML;
         formData.append("Zaubertrank-Rezept:", recipeString);
         let query = new URLSearchParams(formData);
         response = await fetch(url + "?" + query.toString());
         let responseText = await response.text();
-        alert(responseText);
+        alert(responseText.replace(/<br>/g, " "));
     }
     function addToTotalPrice(_priceToAdd) {
         totalPrice = totalPrice + _priceToAdd;
