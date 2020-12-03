@@ -45,9 +45,6 @@ var L07_witchCaldron;
     }
     async function sendRecipe(_event) {
         let formData = new FormData();
-        let recipeContent = document.querySelector("div#recipe");
-        let recipeString = recipeContent.innerHTML;
-        formData.append("Zaubertrank-Rezept:", recipeString);
         let query = new URLSearchParams(formData);
         response = await fetch(url + "?" + query.toString());
         let responseText = await response.text();
