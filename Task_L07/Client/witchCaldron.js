@@ -3,20 +3,22 @@ var L07_witchCaldron;
 (function (L07_witchCaldron) {
     window.addEventListener("load", handleLoad);
     let totalPrice = 0;
+    let form;
     let url = "https://eiazwei.herokuapp.com/";
     // let url: string = "http://localhost:5001";
     let response;
     let data;
     async function handleLoad(_event) {
         console.log("Start");
+        form = document.querySelector("form#orderForm");
         response = await fetch("Data.json");
         let offer = await response.text();
         data = JSON.parse(offer);
         //fill content
         L07_witchCaldron.generateContent(data);
-        let submit = document.querySelector("#buttonSend");
+        let submit = document.querySelector("button#buttonSend");
         submit.addEventListener("click", sendRecipe);
-        let showRecipes = document.querySelector("#buttonShow");
+        let showRecipes = document.querySelector("button#buttonShow");
         showRecipes.addEventListener("click", retrieveRecipes);
         let recipeContainer = document.querySelector("div#recipeContainer");
         let result = document.createElement("div");
@@ -38,13 +40,13 @@ var L07_witchCaldron;
         let buttonStir = document.querySelector("input#addStir");
         buttonStir.addEventListener("click", handleStir);
     }
-    async function retrieveRecipes() {
+    async function retrieveRecipes(_event) {
         let respone = await fetch(url + "?" + "command=retrieve");
         let responseText = await respone.text();
         alert(responseText.replace(/<br>/g, " "));
     }
     async function sendRecipe(_event) {
-        let formData = new FormData();
+        let formData = new FormData(form);
         let query = new URLSearchParams(formData);
         response = await fetch(url + "?" + query.toString());
         let responseText = await response.text();

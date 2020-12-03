@@ -1,6 +1,7 @@
 namespace L07_witchCaldron {
     window.addEventListener("load", handleLoad);
     let totalPrice: number = 0;
+    let form: HTMLFormElement;
     let url: string = "https://eiazwei.herokuapp.com/";
     // let url: string = "http://localhost:5001";
 
@@ -10,6 +11,7 @@ namespace L07_witchCaldron {
     async function handleLoad(_event: Event): Promise<void> {
         console.log("Start");
 
+        form = <HTMLFormElement>document.querySelector("form#orderForm");
         response = await fetch("Data.json");
         let offer: string = await response.text();
         data = JSON.parse(offer);
@@ -17,10 +19,10 @@ namespace L07_witchCaldron {
         //fill content
         generateContent(data);
 
-        let submit: HTMLButtonElement = <HTMLButtonElement>document.querySelector("#buttonSend");
+        let submit: HTMLButtonElement = <HTMLButtonElement>document.querySelector("button#buttonSend");
         submit.addEventListener("click", sendRecipe);
 
-        let showRecipes: HTMLButtonElement = <HTMLButtonElement>document.querySelector("#buttonShow");
+        let showRecipes: HTMLButtonElement = <HTMLButtonElement>document.querySelector("button#buttonShow");
         showRecipes.addEventListener("click", retrieveRecipes);
 
         let recipeContainer: HTMLDivElement = <HTMLDivElement>document.querySelector("div#recipeContainer");
@@ -59,7 +61,7 @@ namespace L07_witchCaldron {
     }
 
     async function sendRecipe(_event: Event): Promise<void> {
-        let formData: FormData = new FormData();
+        let formData: FormData = new FormData(form);
         let query: URLSearchParams = new URLSearchParams(<any>formData);
         response = await fetch(url + "?" + query.toString());
         let responseText: string = await response.text();
