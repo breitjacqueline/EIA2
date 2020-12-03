@@ -41,12 +41,19 @@ var L07_witchCaldron;
         buttonStir.addEventListener("click", handleStir);
     }
     async function retrieveRecipes() {
+        let formData = new FormData(form);
+        let recipeContent = document.querySelector("div#recipe");
+        let recipeString = recipeContent.innerHTML;
+        formData.append("Zaubertrank-Rezept:", recipeString);
         let respone = await fetch(url + "?" + "command=retrieve");
         let responseText = await respone.text();
         alert(responseText.replace(/<br>/g, " "));
     }
     async function sendRecipe(_event) {
         let formData = new FormData(form);
+        let recipeContent = document.querySelector("div#recipe");
+        let recipeString = recipeContent.innerHTML;
+        formData.append("Zaubertrank-Rezept:", recipeString);
         let query = new URLSearchParams(formData);
         response = await fetch(url + "?" + query.toString());
         let responseText = await response.text();

@@ -53,8 +53,8 @@ var L07_witchCaldron;
     }
     async function handleRetrieveRecipe(_request, _response) {
         let allRecipes = recipes.find();
-        let allRecipesString = await allRecipes.toArray();
-        for (let recipe of allRecipesString) {
+        let recipesString = await allRecipes.toArray();
+        for (let recipe of recipesString) {
             for (let key in Object(recipe)) {
                 _response.write(key + ": " + Object(recipe)[key] + "\n");
             }

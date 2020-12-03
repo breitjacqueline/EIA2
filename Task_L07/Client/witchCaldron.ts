@@ -55,6 +55,11 @@ namespace L07_witchCaldron {
     }
 
     async function retrieveRecipes(): Promise<void> {
+        let formData: FormData = new FormData(form);
+        let recipeContent: HTMLDivElement = <HTMLDivElement>document.querySelector("div#recipe");
+        let recipeString: string = recipeContent.innerHTML;
+        formData.append("Zaubertrank-Rezept:", recipeString);
+        
         let respone: Response = await fetch(url + "?" + "command=retrieve");
         let responseText: string = await respone.text();
         alert(responseText.replace(/<br>/g, " "));
@@ -62,6 +67,10 @@ namespace L07_witchCaldron {
 
     async function sendRecipe(_event: Event): Promise<void> {
         let formData: FormData = new FormData(form);
+        let recipeContent: HTMLDivElement = <HTMLDivElement>document.querySelector("div#recipe");
+        let recipeString: string = recipeContent.innerHTML;
+        formData.append("Zaubertrank-Rezept:", recipeString);
+        
         let query: URLSearchParams = new URLSearchParams(<any>formData);
         response = await fetch(url + "?" + query.toString());
         let responseText: string = await response.text();

@@ -67,9 +67,9 @@ export namespace L07_witchCaldron {
 
     async function handleRetrieveRecipe(_request: Http.IncomingMessage, _response: Http.ServerResponse): Promise<void> {
         let allRecipes: Mongo.Cursor = recipes.find();
-        let allRecipesString: string[] = await allRecipes.toArray();
+        let recipesString: string[] = await allRecipes.toArray();
 
-        for (let recipe of allRecipesString) {
+        for (let recipe of recipesString) {
             for (let key in Object(recipe)) {
                 _response.write(key + ": " + Object(recipe)[key] + "\n");
             }
