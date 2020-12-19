@@ -17,115 +17,61 @@ var L08_Canvas;
         drawMountains(posMountains, 75, 200, "grey", "white");
         drawMountains(posMountains, 50, 150, "grey", "lightgrey");
         drawSkiSlope();
-        drawSkiLift();
+        drawSkiLift({ x: 0, y: 200 });
         generatePeople();
         generateTrees();
+        generateSnowflakes();
     }
-    function drawSkiLift() {
-        crc2.strokeStyle = "black";
-        crc2.lineWidth = 3;
-        // Endpoint
-        crc2.beginPath();
-        crc2.lineTo(10, 350);
-        crc2.lineTo(30, 300);
-        crc2.lineTo(90, 300);
-        crc2.lineTo(110, 350);
-        crc2.stroke();
-        crc2.closePath();
-        //Startpoint
-        crc2.beginPath();
-        crc2.lineTo(10, 600);
-        crc2.lineTo(30, 550);
-        crc2.lineTo(90, 550);
-        crc2.lineTo(110, 600);
-        crc2.stroke();
-        crc2.closePath();
-        //cable pull left
-        crc2.beginPath();
-        crc2.lineTo(30, 300);
-        crc2.lineTo(30, 550);
-        crc2.stroke();
-        crc2.closePath();
-        //cable pull right
-        crc2.beginPath();
-        crc2.lineTo(90, 300);
-        crc2.lineTo(90, 550);
-        crc2.stroke();
-        crc2.closePath();
-        //T-bar end
-        crc2.beginPath();
-        crc2.lineTo(30, 350);
-        crc2.lineTo(90, 350);
-        crc2.stroke();
-        crc2.closePath();
-        crc2.beginPath();
-        crc2.lineTo(60, 350);
-        crc2.lineTo(60, 380);
-        crc2.stroke();
-        crc2.closePath();
-        //T-bar middle
-        crc2.beginPath();
-        crc2.lineTo(30, 420);
-        crc2.lineTo(90, 420);
-        crc2.stroke();
-        crc2.closePath();
-        crc2.beginPath();
-        crc2.lineTo(60, 420);
-        crc2.lineTo(60, 450);
-        crc2.stroke();
-        crc2.closePath();
-        //T-bar start
-        crc2.beginPath();
-        crc2.lineTo(30, 490);
-        crc2.lineTo(90, 490);
-        crc2.stroke();
-        crc2.closePath();
-        crc2.beginPath();
-        crc2.lineTo(60, 490);
-        crc2.lineTo(60, 520);
-        crc2.stroke();
-        crc2.closePath();
-        //tow nr3
-        crc2.beginPath();
-        crc2.lineTo(90, 370);
-        crc2.lineTo(80, 390);
-        crc2.stroke();
-        crc2.closePath();
-        crc2.beginPath();
-        crc2.lineTo(90, 390);
-        crc2.lineTo(70, 390);
-        crc2.stroke();
-        crc2.closePath();
-        //tow nr2
-        crc2.beginPath();
-        crc2.lineTo(90, 430);
-        crc2.lineTo(80, 450);
-        crc2.stroke();
-        crc2.closePath();
-        crc2.beginPath();
-        crc2.lineTo(90, 450);
-        crc2.lineTo(70, 450);
-        crc2.stroke();
-        crc2.closePath();
-        //tow nr1
-        crc2.beginPath();
-        crc2.lineTo(90, 500);
-        crc2.lineTo(80, 520);
-        crc2.stroke();
-        crc2.closePath();
-        crc2.beginPath();
-        crc2.lineTo(90, 520);
-        crc2.lineTo(70, 520);
-        crc2.stroke();
-        crc2.closePath();
-    }
-    function generatePeople() {
-        for (let i = 0; i < 5; i++) {
-            let pos = getRandomCoordinate(20, 340, 350, 630);
-            drawPeople(pos);
+    function generateSnowflakes() {
+        for (let i = 0; i < 600; i++) {
+            let pos = getRandomCoordinate(0, 360, 0, 640);
+            drawSnowflake(pos);
         }
     }
-    function drawPeople(pos) {
+    function drawSnowflake(pos) {
+        console.log("Snowflakes");
+        let x = pos.x;
+        let y = pos.y;
+        let radiusSnowflake = Math.random() * 3 + 0.5;
+        crc2.beginPath();
+        crc2.arc(x, y, radiusSnowflake, 0, 2 * Math.PI);
+        crc2.fillStyle = "white";
+        crc2.fill();
+    }
+    function drawSkiLift(_position) {
+        console.log("Lift", _position);
+        crc2.save();
+        crc2.beginPath();
+        crc2.strokeStyle = "black";
+        crc2.moveTo(0, 30);
+        crc2.lineTo(360, 320);
+        crc2.lineWidth = 2;
+        crc2.stroke();
+        crc2.closePath();
+        crc2.translate(_position.x, _position.y);
+        crc2.restore();
+        crc2.save();
+        crc2.translate(0, 30);
+        for (let i = 0; i <= 7; i++) {
+            crc2.beginPath();
+            crc2.strokeStyle = "black";
+            crc2.moveTo(0, 0);
+            crc2.translate(50, 40);
+            crc2.moveTo(0, 0);
+            crc2.lineTo(0, 30);
+            crc2.lineTo(-25, 30);
+            crc2.moveTo(12.5, 0);
+            crc2.stroke();
+        }
+        crc2.restore();
+    }
+    function generatePeople() {
+        for (let i = 0; i < 7; i++) {
+            let pos = getRandomCoordinate(20, 340, 400, 620);
+            drawPerson(pos);
+        }
+    }
+    function drawPerson(pos) {
         console.log("People");
         let x = pos.x;
         let y = pos.y;
@@ -173,8 +119,8 @@ var L08_Canvas;
     }
     function generateTrees() {
         console.log("Trees");
-        for (let i = 0; i < 10; i++) {
-            let pos = getRandomCoordinate(110, 350, 640, 400);
+        for (let i = 0; i < 7; i++) {
+            let pos = getRandomCoordinate(110, 350, 400, 620);
             drawTree(pos);
         }
     }

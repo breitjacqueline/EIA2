@@ -1,13 +1,35 @@
-namespace L08_Canvas {
+namespace L09_Classes {
     interface Vector {
         x: number;
         y: number;
     }
 
 
-    window.addEventListener("load", handleLoad);
-    let crc2: CanvasRenderingContext2D;
+    window.addEventListener("load", handleLoad); 
+    window.setTimeout(animate, 5);
+
+    export let crc2: CanvasRenderingContext2D;
     let golden: number = 0.62;
+    let posMountains: Vector = { x: 0, y: 340 };
+    let skiers: Skier[] = [];
+
+    let snowflakes: Snowflake [] = [];
+    for (let i: number = 1; i < 400; i++) {
+        snowflakes.push(new Snowflake(Math.floor(Math.random() * (340 + 1)), Math.floor(Math.random() * (600 + 1))));
+    }
+
+    let imgData: ImageData;
+    
+
+    skiers.push(new Skier(340, 640, (Math.random() * 5) + 1));
+    skiers.push(new Skier(340, 640, (Math.random() * 5) + 1));
+    skiers.push(new Skier(340, 640, (Math.random() * 5) + 1));
+    skiers.push(new Skier(340, 640, (Math.random() * 5) + 1));
+    skiers.push(new Skier(340, 640, (Math.random() * 5) + 1));
+    skiers.push(new Skier(340, 640, (Math.random() * 5) + 1));
+    skiers.push(new Skier(340, 640, (Math.random() * 5) + 1));
+    skiers.push(new Skier(340, 640, (Math.random() * 5) + 1));
+    
 
 
 
@@ -17,9 +39,6 @@ namespace L08_Canvas {
             return;
         crc2 = <CanvasRenderingContext2D>canvas.getContext("2d");
 
-        // let horizon: number = crc2.canvas.height * golden;
-        let posMountains: Vector = { x: 0, y: 340 };
-
         drawBackground();
         drawSun({ x: 300, y: 50 });
         drawCloud({ x: 100, y: 75 }, { x: 200, y: 50 });
@@ -27,31 +46,31 @@ namespace L08_Canvas {
         drawMountains(posMountains, 50, 150, "grey", "lightgrey");
         drawSkiSlope();
         drawSkiLift({x: 0, y: 200});
-        generatePeople();
         generateTrees();
-        generateSnowflakes();
-        
+//Hintergrund speichern
+        imgData = crc2.getImageData(0, 0, canvas.width, canvas.height);
+}
+
+    function drawSkiers(): void {
+        console.log("draw skiers");
+        for (let skier of skiers) {
+            skier.update();
+        }
     }
 
-    function generateSnowflakes(): void {
-
-        for (let i: number = 0; i < 600; i++) {
-            let pos: Vector = getRandomCoordinate(0, 360, 0, 640);
-            drawSnowflake(pos); 
-        } 
+    function drawSnowflakes(): void {
+        console.log("draw snowflakes");
+        for (let snowflake of snowflakes) {
+            snowflake.update();
+        }
     }
 
-    function drawSnowflake(pos: Vector): void {
-        console.log("Snowflakes");
-
-        let x: number = pos.x;
-        let y: number = pos.y;
-        let radiusSnowflake: number = Math.random() * 3 + 0.5;
-             
-        crc2.beginPath();
-        crc2.arc(x, y, radiusSnowflake, 0, 2 * Math.PI);
-        crc2.fillStyle = "white";
-        crc2.fill();           
+    function animate(): void {
+        console.log("animate");
+        crc2.putImageData(imgData, 0, 0);
+        drawSkiers();
+        drawSnowflakes();
+        window.setTimeout(animate, 5);
     }
 
     function drawSkiLift(_position: Vector): void {
@@ -89,70 +108,6 @@ namespace L08_Canvas {
         crc2.restore(); 
     }
 
-    function generatePeople(): void {
-        
-        for (let i: number = 0; i < 7; i++) {
-            let pos: Vector = getRandomCoordinate(20, 340, 400, 620);
-            drawPerson(pos); 
-        }
-
-    }
-
-    function drawPerson(pos: Vector): void {
-        console.log("People");
-
-        let x: number = pos.x;
-        let y: number = pos.y;
-
-        crc2.strokeStyle = "black";
-        crc2.lineWidth = 2;
-
-// left leg
-        crc2.beginPath();
-        crc2.moveTo(x, y);
-        crc2.lineTo(x - 10, y + 15);
-        crc2.lineTo(x + 10, y + 15);
-        crc2.lineTo(x - 20, y + 15);
-        crc2.stroke();
-        crc2.closePath();
-
-// right leg
-        crc2.beginPath();
-        crc2.moveTo(x, y);
-        crc2.lineTo(x + 10, y + 10);
-        crc2.lineTo(x + 25, y + 10);
-        crc2.lineTo(x - 5, y + 10);
-        crc2.stroke();
-        crc2.closePath();
-
-// body
-        crc2.beginPath();
-        crc2.moveTo(x, y);
-        crc2.lineTo(x, y - 10);
-        crc2.stroke();
-        crc2.closePath();
-
-// head
-        crc2.beginPath();
-        crc2.arc(x, y - 15, 5, 0, 2 * Math.PI);
-        crc2.stroke();
-        crc2.closePath();
-
-// right arm
-        crc2.beginPath();
-        crc2.moveTo(x, y - 5);
-        crc2.lineTo(x + 15, y - 10);
-        crc2.stroke();
-        crc2.closePath();
-
-// left arm
-        crc2.beginPath();
-        crc2.moveTo(x, y - 5);
-        crc2.lineTo(x - 15, y - 10);
-        crc2.stroke();
-        crc2.closePath();
-
-    }
 
     function generateTrees(): void {
         console.log("Trees");
