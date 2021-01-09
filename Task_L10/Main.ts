@@ -45,7 +45,7 @@ namespace L10_Inheritance {
         //Hintergrund speichern
         imgData = crc2.getImageData(0, 0, canvas.width, canvas.height);
 
-        window.setInterval(animate, 10);
+        window.setInterval(animate, 5);
 }
 
     function drawSkiers(): void {
