@@ -32,7 +32,7 @@ var L10_Inheritance;
         generateTrees();
         //Hintergrund speichern
         imgData = L10_Inheritance.crc2.getImageData(0, 0, canvas.width, canvas.height);
-        window.setInterval(animate, 20);
+        window.setInterval(animate, 10);
     }
     function drawSkiers() {
         console.log("draw skiers");
