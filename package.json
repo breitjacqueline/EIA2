@@ -4,7 +4,7 @@
   "description": "Control for the heroku implementation",
   "main": "Server.js",
   "scripts": {
-    "start": "node Task_L07/Server/Server.js"
+    "start": "node Endabgabe/Endabgabe/Server/Server.js"
   },
   "repository": {
     "type": "git",
