@@ -26,7 +26,13 @@ namespace Firework {
             let url: Url.UrlWithParsedQuery = Url.parse(_request.url, true);
             console.log(url);
             if (url.pathname == "/") {
-                let previousFireworks: string = createFireworkButtons();
+                let previousFireworks: string = "";
+                try {
+                    previousFireworks = createFireworkButtons();
+                }  
+                catch(e) {
+                    console.log("Error: " + e);
+                } 
                 if (previousFireworks == "" || previousFireworks == undefined) previousFireworks = "<div>No previous fireworks found</div>";
                 responseHtml = getHtmlTemplate("../Client/index.html").replace("[FIREWORKS]", previousFireworks);
             } else if (url.pathname == "/firework") { 

@@ -62,7 +62,13 @@ var Firework;
             var url = Url.parse(_request.url, true);
             console.log(url);
             if (url.pathname == "/") {
-                var previousFireworks = createFireworkButtons();
+                var previousFireworks = "";
+                try {
+                    previousFireworks = createFireworkButtons();
+                }
+                catch (e) {
+                    console.log("Error: " + e);
+                }
                 if (previousFireworks == "" || previousFireworks == undefined)
                     previousFireworks = "<div>No previous fireworks found</div>";
                 responseHtml = getHtmlTemplate("../Client/index.html").replace("[FIREWORKS]", previousFireworks);
