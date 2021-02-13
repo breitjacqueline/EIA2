@@ -29,12 +29,11 @@ namespace Firework {
                 let previousFireworks: string = "";
                 try {
                     previousFireworks = createFireworkButtons();
-                }  
-                catch(e) {
+                } catch (e) {
                     console.log("Error: " + e);
                 } 
                 if (previousFireworks == "" || previousFireworks == undefined) previousFireworks = "<div>No previous fireworks found</div>";
-                responseHtml = getHtmlTemplate("../Client/index.html").replace("[FIREWORKS]", previousFireworks);
+                responseHtml = getHtmlTemplate("C:/Users/jacyb/Documents/EIA2/Endabgabe/Endabgabe/Client/index.html").replace("[FIREWORKS]", previousFireworks);
             } else if (url.pathname == "/firework") { 
                 responseHtml = getHtmlTemplate("../Client/firework.html");  
                 if (url.query.save != "no") storeFirework(url.query);
