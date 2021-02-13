@@ -6,6 +6,7 @@ import * as Mongo from "mongodb";
 namespace Firework {
     let port: number | string  | undefined = process.env.PORT;
     if (port == undefined) port = 5000;
+    let clientfolder: string = __dirname + "/../Client/";
     let fireworks: Mongo.Collection;
     let DatabaseUrl: string = "mongodb+srv://jacyb:XGHzX2TpMuyUdY8J@eia2.6l8hq.mongodb.net/Final_Task?retryWrites=true&w=majority";
     let DatabaseName: string = "fireworks";
@@ -33,15 +34,15 @@ namespace Firework {
                     console.log("Error: " + e);
                 } 
                 if (previousFireworks == "" || previousFireworks == undefined) previousFireworks = "<div>No previous fireworks found</div>";
-                responseHtml = getHtmlTemplate("C:/Users/jacyb/Documents/EIA2/Endabgabe/Endabgabe/Client/index.html").replace("[FIREWORKS]", previousFireworks);
+                responseHtml = getHtmlTemplate(clientfolder + "index.html").replace("[FIREWORKS]", previousFireworks);
             } else if (url.pathname == "/firework") { 
-                responseHtml = getHtmlTemplate("../Client/firework.html");  
+                responseHtml = getHtmlTemplate(clientfolder + "firework.html");  
                 if (url.query.save != "no") storeFirework(url.query);
                 getFireworks();         
             } else {
                 _response.setHeader("content-type", getMediaType(url.pathname + ""));
                 try {
-                    responseHtml = getHtmlTemplate("../Client/" + url.pathname);
+                    responseHtml = getHtmlTemplate(clientfolder + url.pathname);
                 } catch (e) {
                     console.error(e);
                 }
