@@ -4,7 +4,7 @@
   "description": "Control for the heroku implementation",
   "main": "server.js",
   "scripts": {
-    "start": "node ../Final_Task/firework-backend2/server.js remote"
+    "start": "node ../Final_Task/firework-backend2/server.js"
   },
   "repository": {
     "type": "git",
