@@ -2,9 +2,9 @@
   "name": "eiazwei",
   "version": "1.0.0",
   "description": "Control for the heroku implementation",
-  "main": "Server.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node Endabgabe/Endabgabe/Server/Server.js"
+    "start": "node Final_Task/firework-backend2/server.js remote"
   },
   "repository": {
     "type": "git",
