@@ -11,7 +11,7 @@ class App {
     //local mongodb url
     public localMongoUrl: string = "mongodb://127.0.0.1:27017/firework";
     //remote mongodb url
-    public remoteMongoUrl: string = "mongodb+srv://burak:burak@firework.fxgkf.mongodb.net/firework?retryWrites=true&w=majority";
+    public remoteMongoUrl: string = "mongodb+srv://jacyb:XGHzX2TpMuyUdY8J@eia2.6l8hq.mongodb.net/Final_Task?retryWrites=true&w=majority";
     // variable holding the parameter from  npm start if the database url should be remote or local
     public isRemote: boolean;
 
